@@ -1,9 +1,9 @@
-# React + Vite
+# 🛠️ Flow Board
+**Flow Board** is a sleek, Kanban-style application designed to streamline workflow operations. It offers a visual interface to track tasks, prioritize workloads, and enhance productivity across teams.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# Flow-Board-A-KanBan-Board-React-Project-
+## 🚀 Features
+- **Drag-and-Drop Tasks:** Easily move tasks between columns to update their status.
+- **Customizable Boards:** Create, edit, and delete boards and columns to fit your workflow.
+- **Real-Time Updates:** Stay in sync with live task updates.
+- **Task Assignments & Deadlines:** Assign tasks, set due dates, and monitor progress.
+- **Progress Tracking:** Visualize the entire workflow in a glance.
