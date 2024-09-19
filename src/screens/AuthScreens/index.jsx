@@ -9,7 +9,8 @@ import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import FormControl from '@mui/material/FormControl';
-
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase';
 const initForm = {
     email: "",
     password:"",
@@ -18,6 +19,7 @@ const AuthScreen = () => {
 
 
     const [isLogin, setIsLogin] =  useState(true);
+    const [isLoading, setLoading] = useState(false);
     const [form, setFrom] = useState(initForm);
     const authText = isLogin ? "Do not have an Account ?" : "Already have a Account ?";
 
@@ -27,18 +29,39 @@ const AuthScreen = () => {
             [event.target.name]:event.target.value,
         }))
 
-    const handleAuth = async () => {};
-    const [showPassword, setShowPassword] = useState(false);
+        const [showPassword, setShowPassword] = useState(false);
+    
+        const handleClickShowPassword = () => setShowPassword((show) => !show);
+      
+        const handleMouseDownPassword = (event) => {
+          event.preventDefault();
+        };
+      
+        const handleMouseUpPassword = (event) => {
+          event.preventDefault();
+        };
 
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
-  
-    const handleMouseDownPassword = (event) => {
-      event.preventDefault();
+
+    const handleAuth = async () => {
+
+      try {
+        setLoading(true)
+        if(isLogin){
+          await signInWithEmailAndPassword(auth, form.email, form.password);
+
+        }
+        else{
+          await createUserWithEmailAndPassword(auth, form.email, form.password);
+        }
+        
+      } catch (error) {
+        const msg = error.code.split('auth/')[1].split('-').join(' ')
+        console.log(msg);
+        setLoading(false);
+      }
     };
-  
-    const handleMouseUpPassword = (event) => {
-      event.preventDefault();
-    };
+
+
    
 
     /*
@@ -111,7 +134,7 @@ const AuthScreen = () => {
         </FormControl>
 
 
-                <Button disabled={!form.email.trim() || !form.password.trim()} size='large'  variant='contained' onClick={handleAuth} >
+                <Button disabled={isLoading || !form.email.trim() || !form.password.trim()} size='large'  variant='contained' onClick={handleAuth} >
                     {isLogin ? "Login" : "Register"}
                 </Button>
 
@@ -141,6 +164,6 @@ const AuthScreen = () => {
     </Container>
   )
 }
-// 48:12
+// 1:24:21
 
 export default AuthScreen

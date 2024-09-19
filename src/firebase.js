@@ -1,4 +1,3 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth, connectAuthEmulator } from "firebase/auth";
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
@@ -11,7 +10,6 @@ const firebaseConfig = {
   storageBucket: "flowboard-df723.appspot.com",
   messagingSenderId: "339719779379",
   appId: "1:339719779379:web:82e18391f5d794ecf0df46",
-  measurementId: "G-XJG01VLJZQ"
 };
 
 // Initialize Firebase
@@ -21,7 +19,7 @@ export const auth = getAuth(app);
 export const fbFunctions = getFunctions(app);
 
 if (process.env.NODE_ENV === "development") {
-  connectAuthEmulator(auth, "http://localhost:9098");
+  connectAuthEmulator(auth, "http://localhost:9099");
   connectFirestoreEmulator(db, "localhost", 8082);
   connectFunctionsEmulator(fbFunctions, "localhost", 5002);
 }
