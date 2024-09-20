@@ -6,6 +6,7 @@ import AuthScreen from './screens/AuthScreens';
 import { auth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import useStore from './store';
+import AppLoader from './components/layouts/AppLoader';
 
 const App = () => {
 
@@ -21,6 +22,8 @@ const App = () => {
 
     return () => unsub();
   }, []);
+
+  if(loader) return <AppLoader/>
 
   return (
   

@@ -164,6 +164,6 @@ const AuthScreen = () => {
     </Container>
   )
 }
-// 1:24:21
+// 1:27:51
 
 export default AuthScreen
